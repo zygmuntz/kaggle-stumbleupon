@@ -1,0 +1,12 @@
+text2libsvm.py train.tsv train.txt -s vocab.txt
+
+text2libsvm.py test.tsv test.txt -l vocab.txt -t 1
+
+
+nnlearn -e 50 -h 64 -r 0.1 train.txt train.txt model
+
+nnclassify test.txt model.auc p.txt
+
+
+p2sub.py sampleSubmission.csv p.txt p.csv
+
